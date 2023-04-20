@@ -3,15 +3,20 @@ import { Inter } from 'next/font/google'
 import { Container, Row, Col } from 'reactstrap'
 import { useAtom } from 'jotai'
 import { RESET } from 'jotai/utils'
+import { useRouter } from 'next/router'
 import type { ChangeEvent, ReactNode } from 'react'
 
 import { registerAtom, loginFormAtom } from './atoms'
+import Title from '@/components/Title'
 import type { FormField, FormFields } from '@/types'
 
 const inter = Inter({ subsets: ['latin'] })
 
 function login() {
     
+    // router
+    const router = useRouter()
+
     // current session (user logged in or not)
     const session = useSession()
     // supabase client
@@ -31,7 +36,9 @@ function login() {
                 password: password,
             })
 
-
+            if (!error) {
+                router.push('/tasks')
+            }
         }
     }
 
@@ -39,10 +46,10 @@ function login() {
         // ideally here we could skip checking with if, by setting another
         // type for the validated form data that doesn't have any nullable elements
         if (email && password) {
-            console.log(await supabase.auth.signInWithPassword({
+            const { data, error } = await supabase.auth.signUp({
                 email: email,
                 password: password,
-            }))
+            })
         }
     }
 
@@ -95,9 +102,7 @@ function login() {
         {
             !session && <p>Not logged in</p>
         }
-        <Row>
-            <h1 className='font-bold text-6xl'>Login</h1>
-        </Row>
+        <Title>Login</Title>
         <Row className='my-5'>
             <Container>
                 { fields }

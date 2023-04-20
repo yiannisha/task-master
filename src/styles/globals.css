@@ -25,4 +25,16 @@ body {
     )
     rgb(var(--background-start-rgb)); */
   background: linear-gradient(to bottom right, #fff, #e6e6e6);
+
+
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.w-fit-content {
+  width: fit-content !important;
 }
