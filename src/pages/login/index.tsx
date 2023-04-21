@@ -8,7 +8,7 @@ import type { ChangeEvent, ReactNode } from 'react'
 
 import { registerAtom, loginFormAtom } from './atoms'
 import Title from '@/components/Title'
-import type { FormField, FormFields } from '@/types'
+import type { FormField, FormFields } from '@/pages/login/types'
 
 const inter = Inter({ subsets: ['latin'] })
 

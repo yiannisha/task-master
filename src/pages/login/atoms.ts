@@ -2,7 +2,7 @@
 
 import { atom } from 'jotai'
 import { atomWithReset } from 'jotai/utils'
-import { LoginFormData } from '@/types'
+import { LoginFormData } from '@/pages/login/types'
 
 export const registerAtom = atom<boolean>(false)
 
